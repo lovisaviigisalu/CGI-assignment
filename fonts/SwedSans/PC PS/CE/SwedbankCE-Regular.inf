@@ -1,0 +1,23 @@
+FontName (SwedbankCE-Regular)
+FullName (Swedbank CE Regular)
+FamilyName (Swedbank CE)
+Version (001.001)
+isFixedPitch false
+CharacterSet (ce.cs)
+Encoding (ce.enc)
+Pi true
+ItalicAngle 0
+CapHeight 713
+UnderlinePosition -133
+UnderlineThickness 20
+StemWidth 63
+Serif false
+AppleName (Swedbank CE Regular)
+MSMenuName (Swedbank CE Regular)
+VPMenuName (Swedbank CE Regular)
+WORDMenuName (Swedbank CE Regular)
+AppleFONDID 30746
+VPStyle (N)
+WindowsCharSet 238
+WindowsFirstChar 32
+WindowsLastChar 255

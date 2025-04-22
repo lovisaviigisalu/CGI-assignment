@@ -1,0 +1,389 @@
+@font-face {
+  font-family: "Headline";
+  src: url("fonts/SwedbankHeadline/SwedbankHeadline_OTF/SwedbankHeadline-Black.otf");
+}
+/* intro styling */
+#intro {
+  background-color: white;
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 40px 20px;
+  border-radius: 16px;
+  text-align: center;
+}
+#intro h1 {
+  color: #ff6600;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+#intro p {
+  color: #512b2b;
+  margin-bottom: 24px;
+  font-size: 18px;
+}
+#startBtn {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+}
+#startBtn:hover {
+  background-color: #e65500;
+}
+#applicationForm,
+#summary {
+  display: none;
+}
+header {
+  background-color: white;
+  margin: 0px;
+}
+.logo {
+  margin: 24px;
+  width: 180px;
+}
+
+form {
+  margin-top: 50px;
+}
+fieldset,
+.answers label,
+select,
+textarea {
+  background-color: white;
+}
+body {
+  margin: 0px;
+  background-color: #fff1e4;
+  font-family: "Roboto", sans-serif;
+  color: #512b2b;
+}
+h1 {
+  color: #ff6600;
+  font-size: 32px;
+  font-weight: normal;
+  font-family: "Headline";
+}
+.main {
+  background-color: white;
+  padding: 24px 16px;
+  border-radius: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.question {
+  border: 1px solid #ff6600;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+legend {
+  font-weight: normal;
+  color: #ff6600;
+  font-size: 26px;
+  font-family: "Headline";
+  margin-bottom: 24px;
+}
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: #512b2b;
+  padding: 8px;
+  border-radius: 12px;
+  font-weight: normal;
+  width: 220px;
+  font-size: 16px;
+  font-family: "Roboto";
+}
+.tooltip.visible {
+  display: block;
+}
+.tooltip-container:hover .tooltip {
+  display: block;
+}
+
+.help-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.tooltip-container:hover .help-icon {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(25%) saturate(1377%)
+    hue-rotate(341deg) brightness(103%) contrast(101%);
+}
+
+label {
+  font-size: 16px;
+}
+fieldset {
+  border: 0px;
+  padding: 0px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+.error-message {
+  display: none;
+  color: red;
+  font-size: 16px;
+}
+
+.answers label {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 13px;
+  line-height: 18px;
+}
+input[type="radio"] {
+  accent-color: #ff5f00;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  margin-right: 8px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+input[type="radio"]:hover {
+  accent-color: #fdc92a;
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+input[type="checkbox"] {
+  accent-color: #ff5f00;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+input[type="checkbox"]:hover {
+  accent-color: #fdc929;
+  cursor: pointer;
+}
+select {
+  padding: 13px 30px 13px 10px;
+  font-size: 15px;
+  appearance: none;
+  background-color: #ecf9f3;
+  background-image: url("./assets/expand_all_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid rgb(188, 216, 219);
+  border-radius: 3px;
+  font-family: "Roboto", sans-serif;
+  color: #512b2b;
+}
+
+textarea {
+  border: 1px solid rgb(188, 216, 219);
+  border-radius: 3px;
+  color: rgb(81, 43, 43);
+  cursor: text;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  line-height: 18px;
+  padding: 13px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100px;
+  resize: vertical;
+  overflow: hidden;
+}
+
+textarea:hover {
+  border: 1px solid #5b8ad6;
+}
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*Nupud*/
+#prevBtn {
+  padding: 13px 23px 11px;
+  margin: 10px;
+  background-color: white;
+  color: rgb(37, 120, 134);
+  border-style: solid;
+  border-color: rgb(37, 120, 134);
+  border-radius: 24px;
+  font-size: 18.992px;
+  font-family: "Headline";
+  line-height: 24px;
+  cursor: pointer;
+}
+
+#prevBtn:hover:disabled {
+  background-color: #f8f6f6;
+  cursor: not-allowed;
+}
+
+#prevBtn:hover {
+  background-color: #f8f6f6;
+}
+
+#nextBtn {
+  padding: 13px 23px 11px;
+  margin: 10px;
+  background-color: #ff5f00;
+  color: white;
+  border-style: solid;
+  border-color: #ff5f0023;
+  border-radius: 24px;
+  font-size: 18.992px;
+  font-family: "Headline";
+  line-height: 24px;
+  cursor: pointer;
+}
+
+#nextBtn:hover {
+  background-color: #f15b09;
+}
+
+.summary {
+  background-color: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 24px 16px;
+  border-radius: 16px;
+  margin: 50px auto 0 auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin-bottom: 100px;
+}
+
+.summary h2 {
+  font-weight: bold;
+  color: #ff5f00;
+  font-size: 32px;
+  font-family: "Headline";
+  margin-bottom: 24px;
+}
+
+.summary-item {
+  margin-bottom: 20px;
+}
+
+.summary-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(37, 120, 134);
+  margin-bottom: 6px;
+}
+
+.summary-item p {
+  font-size: 16px;
+  color: #512b2b;
+  margin: 0;
+}
+/* Üldine paigutus mobiilile */
+@media (max-width: 768px) {
+  #intro {
+    width: 80%;
+    margin: 24px auto;
+    padding: 20px;
+  }
+  #intro h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  #intro p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  #startBtn {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+  }
+  #applicationForm .main {
+    width: 80%;
+    margin: 16px auto;
+    padding: 16px 12px;
+  }
+  .logo {
+    width: 117px;
+    margin: 16px;
+  }
+  .h1 {
+    font-size: 32px;
+  }
+  form {
+    margin-top: 24px;
+  }
+  .question {
+    padding: 8px;
+  }
+  legend {
+    font-size: 26px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 80px;
+    font-size: 16px;
+  }
+  label {
+    font-size: 16px;
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  input[type="radio"]:hover,
+  input[type="checkbox"]:hover {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  select {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  .navigation-buttons {
+    flex-direction: column;
+  }
+  #prevBtn,
+  #nextBtn {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    font-size: 18.992px;
+    border-radius: 24px;
+  }
+  .summary {
+    width: 80%;
+    padding: 20px;
+    margin: 30px auto;
+  }
+  .summary h2 {
+    font-size: 26px;
+    font-weight: normal;
+  }
+  .summary-item h3 {
+    font-size: 16px;
+  }
+  .summary-item p {
+    font-size: 14px;
+  }
+}

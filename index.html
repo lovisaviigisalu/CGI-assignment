@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>CGI - test assignment</title>
+  </head>
+  <body>
+    <header>
+      <img
+        src="./assets/header-logo/swedbank-logo.svg"
+        alt="Swedbank Logo"
+        class="logo"
+        href="index.html"
+      />
+    </header>
+    <section id="intro">
+      <div class="intro-content">
+        <h1>Welcome to Swedbank</h1>
+        <p>
+          Apply for your home loan in just a few easy steps. We’ll ask you five
+          quick questions and then show you a summary of your application.
+        </p>
+        <button type="button" id="startBtn">Start application</button>
+      </div>
+    </section>
+  
+    <form id="applicationForm" novalidate>
+      <div class="main">
+        <h1>Home loan application</h1>
+        <fieldset>
+
+          <legend>
+            1. What is the purpose of your loan?
+            <span class="tooltip-container">
+              <img
+                src="./assets/help_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+                class="help-icon"
+                alt="Help"
+              />
+              <span class="tooltip">
+                Choose the reason you are applying for a loan. This helps us
+                understand your financial needs and tailor our offer
+                accordingly.
+              </span>
+            </span>
+          </legend>
+          <div class="answers">
+            <label for="purchase">
+              <input
+                type="radio"
+                id="purchase"
+                name="loanPurpose"
+                value="Property purchase"
+              />
+              Property purchase
+            </label>
+            <label for="renovation">
+              <input
+                type="radio"
+                id="renovation"
+                name="loanPurpose"
+                value="Property renovation"
+              />
+              Property renovation
+            </label>
+            <label for="construction">
+              <input
+                type="radio"
+                id="construction"
+                name="loanPurpose"
+                value="Property construction"
+              />
+              Property construction
+            </label>
+            <label for="expansion">
+              <input
+                type="radio"
+                id="expansion"
+                name="loanPurpose"
+                value="Property expansion"
+              />
+              Property expansion
+            </label>
+          </div>
+          <p class="error-message" style="display: none">Please fill in this field</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            2. What is the desired loan amount?
+            <span class="tooltip-container">
+              <img
+                src="./assets/help_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+                class="help-icon"
+                alt="Help"
+              />
+              <span class="tooltip">
+                Enter the total amount you wish to borrow. Make sure it reflects
+                your actual needs and repayment ability.
+              </span>
+            </span>
+          </legend>
+          <select id="loanAmount" name="loanAmount">
+            <option value="" disabled selected>– Select amount –</option>
+            <option value="under50k">Under 50,000 €</option>
+            <option value="50to100k">50,000 – 100,000 €</option>
+            <option value="100to150k">100,000 – 150,000 €</option>
+            <option value="over150k">Over 150,000 €</option>
+          </select>
+          <p class="error-message" style="display: none">Please fill in this field</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            3. What are your sources of income?
+            <span class="tooltip-container">
+              <img
+                src="./assets/help_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+                class="help-icon"
+                alt="Help"
+              />
+              <span class="tooltip">
+                Select all income sources you currently receive (e.g., salary,
+                freelance, pension). This helps assess your repayment capacity.
+              </span>
+            </span>
+          </legend>
+          <div class="answers">
+            <label>
+              <input
+                type="checkbox"
+                name="incomeSource"
+                value="Salary"
+              />
+              Salary
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="incomeSource"
+                value="Business income"
+              />
+              Business income
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="incomeSource"
+                value="Rental income"
+              />
+              Rental income
+            </label>
+            <label>
+              <input type="checkbox" name="incomeSource" value="Pension" />
+              Pension
+            </label>
+            <label>
+              <input type="checkbox" name="incomeSource" value="Other" />
+              Other
+            </label>
+          </div>
+          <p class="error-message">Please fill in this field</p>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Select the length of the loan period:</legend>
+          <select id="loanLength" name="loanLength" required>
+            <option value="" disabled selected>– Select period –</option>
+            <option value="under10y">Under 10 years</option>
+            <option value="10y">10 years</option>
+            <option value="15y">15 years</option>
+            <option value="20y">20 years</option>
+            <option value="25y">25 years</option>
+            <option value="30y">30 years</option>
+          </select>
+          <p class="error-message" id="loanLengthError">
+            Please select a loan length
+          </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>5. Additional information or comment:</legend>
+            <textarea
+              id="comment"
+              name="comment"
+              required
+              placeholder="Write your comment here..."
+              maxlength="1000" 
+            ></textarea>
+            <p class="error-message" style="display: none">Please fill in this field</p>
+          </fieldset>
+
+        <div class="navigation-buttons">
+          <button type="button" id="prevBtn" disabled>Previous</button>
+          <button type="button" id="nextBtn">Next</button>
+        </div>
+      </div>
+    </form>
+    <div class="summary" id="summary" style="display: none;">
+        <h2>Review Your Home Loan Application</h2>
+        <div id="summaryContent"></div>
+      </div>
+      
+    <script src="main.js"></script>
+  </body>
+</html>
