@@ -1,1 +1,4 @@
-https://design.swedbankpay.com/v/4.6.1/res/resources/typography
+# Küsimustiku Rakendus
+
+CGi proovitöö - kodulaenu küsimustik, mis võimaldab kasutajal vastata erinevatele küsimustele ja saada kokkuvõte oma vastustest. 
+Rakendus on loodud HTML-i, CSS-i ja JavaScripti abil.
