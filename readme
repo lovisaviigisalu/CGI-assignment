@@ -1,4 +1,5 @@
-# Küsimustiku Rakendus
+# Home Loan Questionnaire
 
-CGi proovitöö - kodulaenu küsimustik, mis võimaldab kasutajal vastata erinevatele küsimustele ja saada kokkuvõte oma vastustest. 
-Rakendus on loodud HTML-i, CSS-i ja JavaScripti abil.
+This is a test assignment — a simple home loan questionnaire that allows users to answer a few questions and receive a summary of their responses.
+
+The application is built using **HTML**, **CSS** and **JavaScript**.
