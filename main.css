@@ -216,7 +216,7 @@ textarea:hover {
   justify-content: center;
   align-items: center;
 }
-/*Nupud*/
+/*Buttons*/
 #prevBtn {
   padding: 13px 23px 11px;
   margin: 10px;
@@ -294,7 +294,7 @@ textarea:hover {
   color: #512b2b;
   margin: 0;
 }
-/* Üldine paigutus mobiilile */
+/* Mobile view */
 @media (max-width: 768px) {
   #intro {
     width: 80%;

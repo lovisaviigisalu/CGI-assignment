@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  //Leiab vajalikud elemendid Html failist
+  // Finds required elements from the HTML file
   const intro   = document.getElementById("intro");
   const startBtn = document.getElementById("startBtn");
   const form    = document.getElementById("applicationForm");
-  //Leiab kõik <fieldset> elemendid ehk küsimused ja salvestab need massiivi
+
+  // Finds all <fieldset> elements (questions) and stores them in an array
   const questions = form.querySelectorAll("fieldset");
 
-  // Peidab vormi kuni klikitakse "Start" peal
+  // Hides the form until "Start" is clicked
   form.style.display = "none";
 
   startBtn.addEventListener("click", () => {
@@ -16,69 +17,69 @@ document.addEventListener("DOMContentLoaded", () => {
     questions.forEach((fs, i) => fs.style.display = i === 0 ? "block" : "none");
   });
 
-  const nextBtn = document.getElementById("nextBtn"); // Next nupp
-  const prevBtn = document.getElementById("prevBtn"); // Previous nupp
-  const summary = document.getElementById("summary"); // Summary konteiner
+  const nextBtn = document.getElementById("nextBtn"); // Next button
+  const prevBtn = document.getElementById("prevBtn"); // Previous button
+  const summary = document.getElementById("summary"); // Summary container
 
-  let current = 0; // Näitab, milline küsimus kuvatakse
+  let current = 0; // Tracks which question is currently shown
 
-  const answers = {}; // Salvestab kasutaja valikud
+  const answers = {}; // Stores user responses
 
-  // 1.küsimuse juures pole 'previous' nuppu vaja, deactivateme selle
+  // Disable 'previous' button for the first question
   prevBtn.disabled = true;
 
-  // Kui klikitakse "Next" nupule
+  // When the "Next" button is clicked
   nextBtn.addEventListener("click", () => {
-    // Kontrollib, kas praegune küsimus on täidetud
+    // Checks if the current question is valid
     if (!isCurrentQuestionValid(current)) {
       return;
     }
 
-    // Kogume kasutaja vastuse
+    // Collect user response
     collectAnswer(current);
 
-    // Ketrab seda niikaua kuni pole jõutud viimase küsimuseni
+    // Loop until last question is reached
     if (current < questions.length - 1) {
-      questions[current].style.display = "none"; // Peidame praeguse küsimuse
-      current++; // Liigume järgmise küsimuse juurde
-      questions[current].style.display = "block"; // Näitame uut küsimust
+      questions[current].style.display = "none"; // Hide current question
+      current++; // Move to next question
+      questions[current].style.display = "block"; // Show new question
 
-      prevBtn.disabled = false; // Aktiveerime "Previous" nupu
+      prevBtn.disabled = false; // Enable "Previous" button
 
-      // Kui jõuame viimase küsimuseni, muudame "Next" nupu tekstiks "Submit"
+      // Change "Next" button to "Submit" on last question
       if (current === questions.length - 1) {
         nextBtn.textContent = "Submit";
       }
     } else {
-      // Kui vajutatakse "Submit" peale viimast küsimust
-      document.querySelector("form").style.display = "none"; // Peidame vormi
-      summary.style.display = "block"; // Näitame kokkuvõtte sektsiooni
-      buildSummary(); // Käivitame kokkuvõtte loomise funktsiooni
+      // When "Submit" is clicked after the last question
+      document.querySelector("form").style.display = "none"; // Hide the form
+      summary.style.display = "block"; // Show the summary section
+      buildSummary(); // Trigger summary building function
     }
   });
 
-  // Kui klikitakse "Previous" nupule
+  // When the "Previous" button is clicked
   prevBtn.addEventListener("click", () => {
-    questions[current].style.display = "none"; // Peidame praeguse küsimuse
-    current--; // Liigume eelmise küsimuse juurde
-    questions[current].style.display = "block"; // Näitame eelmist küsimust
+    questions[current].style.display = "none"; // Hide current question
+    current--; // Move to previous question
+    questions[current].style.display = "block"; // Show previous question
 
-    nextBtn.textContent = "Next"; // Kui olime "Submit" peal, muudame tagasi "Next"
+    nextBtn.textContent = "Next"; // Revert "Submit" back to "Next" if needed
     nextBtn.disabled = false;
 
-    // Kui on jõudnud esimese küsimuseni, siis deaktiveerib "Previous" nupu
+    // Disable "Previous" button if back to first question
     if (current === 0) {
       prevBtn.disabled = true;
     }
   });
 
-  // Funktsioon, mis kontrollib, kas küsimus on täidetud
+  // Function to check if the current question is filled in
   function isCurrentQuestionValid(index) {
     const fieldset = questions[index];
     const requiredInputs = fieldset.querySelectorAll("input, select, textarea");
     let isValid = true;
 
-    // Peidame kõik error-sõnumid alguses
+    // Hide all error messages at start
     const errorMessages = fieldset.querySelectorAll(".error-message");
     errorMessages.forEach((msg) => (msg.style.display = "none"));
 
@@ -111,8 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     return isValid;
-}
-  // Funktsioon, mis kogub vastuse praegusest küsimusest
+  }
+
+  // Function to collect the answer from the current question
   function collectAnswer(index) {
     const fieldset = questions[index];
     const inputs = fieldset.querySelectorAll("input, select, textarea");
@@ -124,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
           answersForQuestion.push(input.value);
         }
       } else if (input.tagName === "SELECT") {
-        // Kui on SELECT, siis otsime valitud optioni sise
+        // For SELECT, get the selected option text
         const selectedOption = input.options[input.selectedIndex];
         answersForQuestion.push(
           selectedOption.textContent || selectedOption.innerText
@@ -134,76 +136,70 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Salvestame vastuse küsimuse järgi
+    // Store the response by question
     answers[`question${index + 1}`] = answersForQuestion.join(", ");
   }
 
   function buildSummary() {
-    const summaryContent = document.getElementById("summaryContent"); //Siia lisatakse kokkuvõte
+    const summaryContent = document.getElementById("summaryContent"); // Summary output container
     summaryContent.innerHTML = "";
-    questions.forEach((fieldset, index) => { // Käib läbi kõik küsimused
-      const legendElement = fieldset.querySelector("legend"); // Leiab iga küsimuse sisu
-      
-      // Väljastab küsimuste tekstisisu, eemaldades sealt tooltipi
-      const legendText = Array.from(legendElement.childNodes)
-        .filter(node => node.nodeType === Node.TEXT_NODE) // Filtreerib
-        .map(node => node.textContent.trim()) // Eemaldab tühikud
-        .join(" "); // Ühendab need üheks tekstiks
-  
-      const answer = answers[`question${index + 1}`] || "No answer"; // Otsib vastuse küsimusele
+    questions.forEach((fieldset, index) => {
+      const legendElement = fieldset.querySelector("legend"); // Get the question text
 
-      const summaryItem = document.createElement("div"); // Loob konteineri iga küsimuse kokkuvõtte jaoks
-      summaryItem.classList.add("summary-item"); // Lisab CSS klassi stiilimiseks
-  
-      const questionTitle = document.createElement("h3"); // Loob küsimuse pealkirja elemendi
-      questionTitle.textContent = legendText; // Paneb legendi teksti sinna sisse
-  
-      const answerText = document.createElement("p"); // Loob vastuse elemendi
-      answerText.textContent = answer; // Paneb sinna vastuse teksti
-  
-      // Lisab küsimuse ja vastuse kokkuvõtte blokki
+      // Extract only the text content, excluding tooltips
+      const legendText = Array.from(legendElement.childNodes)
+        .filter(node => node.nodeType === Node.TEXT_NODE)
+        .map(node => node.textContent.trim())
+        .join(" ");
+
+      const answer = answers[`question${index + 1}`] || "No answer";
+
+      const summaryItem = document.createElement("div");
+      summaryItem.classList.add("summary-item");
+
+      const questionTitle = document.createElement("h3");
+      questionTitle.textContent = legendText;
+
+      const answerText = document.createElement("p");
+      answerText.textContent = answer;
+
       summaryItem.appendChild(questionTitle);
       summaryItem.appendChild(answerText);
-  
-      // Lisame selle kokkuvõtte blokina peamise sisu konteinerisse
+
       summaryContent.appendChild(summaryItem);
     });
   }
-  
-// Valib textarea elemendi
-const textarea = document.querySelector("textarea");
 
-//muudab textarea kõrgust vastavalt sisule
-function adjustHeight() {
-  // Eemaldab eelmised kõrguse muutused
-  this.style.height = 'auto';
-  
-  // Seab kõrguseks 'scrollHeight', mis on täpselt vajalik teksti mahutamiseks
-  this.style.height = this.scrollHeight + 'px';
-}
+  // Selects the textarea element
+  const textarea = document.querySelector("textarea");
 
-// Kuulame sisestamise sündmust textarea-l
-textarea.addEventListener('input', adjustHeight);  
+  // Adjusts textarea height based on its content
+  function adjustHeight() {
+    this.style.height = 'auto';
+    this.style.height = this.scrollHeight + 'px';
+  }
+
+  // Listen to input events on the textarea
+  textarea.addEventListener('input', adjustHeight);  
 });
 
-// Leib kõik elemendid, millel on klass 'help-icon'
+// Find all elements with class 'help-icon'
 document.querySelectorAll('.help-icon').forEach(icon => {
-  // Funktsioon tooltipi (vihjeakna) nähtavuse lülitamiseks
+  // Function to toggle tooltip visibility
   const toggle = () => {
-    const tip = icon.parentElement.querySelector('.tooltip'); // Otsib tooltipi
-    tip.classList.toggle('visible'); // Kui tooltip on nähtav, peidab selle; kui pole, muudab nähtavaks
+    const tip = icon.parentElement.querySelector('.tooltip');
+    tip.classList.toggle('visible');
   };
 
-  // Kui kasutaja klikib ikoonile, käivitab toggle-funktsioon
+  // Toggle tooltip on icon click
   icon.addEventListener('click', toggle);
-
 });
 
-//Kui kasutaja klikib mujale, suletakse nähtav tooltip
+// Hide tooltip when clicking outside
 document.addEventListener('click', e => {
-  if (!e.target.closest('.tooltip-container')) { // Kui klõps ei toimunud tooltipi sees
+  if (!e.target.closest('.tooltip-container')) {
     document.querySelectorAll('.tooltip.visible').forEach(t => {
-      t.classList.remove('visible'); // Peidab tooltipid
+      t.classList.remove('visible');
     });
   }
 });
